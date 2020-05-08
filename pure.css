@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Roboto&family=Pacifico&display=swap');
+
+body {
+  background-image: linear-gradient(to right top, #845ec2, #c05cb0, #e66599, #fa7a82, #ff9671);
+  color: white;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.button {
+  margin: 10px 10px 10px 0px;
+}
+
+.navbar1 {
+  max-width: 500px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  color:white;
+
+}
+
+.navLogo {
+  font-family: Pacifico;
+  font-size: 26px;
+}
+
+.noteline1 {
+  margin-top: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+}
+
+.navLink {
+  justify-items: baseline;
+  border-bottom: 2px solid transparent;
+  color: white;
+}
+
+.navLink:hover {
+  border-bottom: 2px solid #F9F871;
+  transition: 300ms ease-in;
+}
+
+.title1 {
+  text-align: center;
+  color: #F9F871;
+}
+
+.appContainer {
+  margin: 5px;
+  padding: 10px;
+  /* background: white; */
+}
+
+.pure-form {
+  color: red;
+  padding: 40px;
+  background-color: red
+}

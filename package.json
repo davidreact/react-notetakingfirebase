@@ -1,0 +1,29 @@
+{
+  "name": "react",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@firebase/app": "0.6.2",
+    "@fortawesome/fontawesome-svg-core": "1.2.28",
+    "@fortawesome/free-brands-svg-icons": "5.13.0",
+    "@fortawesome/free-solid-svg-icons": "5.13.0",
+    "@fortawesome/react-fontawesome": "0.1.9",
+    "bootstrap": "4.4.1",
+    "firebase": "7.14.2",
+    "jquery": "3.5.0",
+    "moment": "2.25.3",
+    "popper.js": "1.16.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  }
+}
