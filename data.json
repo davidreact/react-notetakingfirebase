@@ -1,0 +1,182 @@
+[
+  {
+    "item": "Zucchini",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Tomatoes",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Strawberry",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Rassberries",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Potatoes",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Peppers",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Heart Romaine",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Grapes",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Ginger",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Eggplant",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Celery",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Carrots",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Broccoli",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Bananas",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Apples",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Enter at Least two Characters",
+    "category": "FruitsVegs"
+  },
+  {
+    "item": "Toilet Paper",
+    "category": "Care"
+  },
+  {
+    "item": "Nappies",
+    "category": "Care"
+  },
+  {
+    "item": "Shower Gel",
+    "category": "Care"
+  },
+  {
+    "item": "Wet Wippes",
+    "category": "Care"
+  },
+  {
+    "item": "Milk",
+    "category": "Fridge"
+  },
+  {
+    "item": "Cheese Edam",
+    "category": "Fridge"
+  },
+  {
+    "item": "Yougurt",
+    "category": "Fridge"
+  },
+  {
+    "item": "Shredded Cheese",
+    "category": "Fridge"
+  },
+  {
+    "item": "Mince Pork",
+    "category": "Meat"
+  },
+  {
+    "item": "Chicken Breast",
+    "category": "Meat"
+  },
+  {
+    "item": "Mince Beef",
+    "category": "Meat"
+  },
+  {
+    "item": "Chicken Drumsticks",
+    "category": "Meat"
+  },
+  {
+    "item": "BBQ Ribs",
+    "category": "Meat"
+  },
+  {
+    "item": "Pizza",
+    "category": "Meat"
+  },
+  {
+    "item": "Sausage",
+    "category": "Meat"
+  },
+  {
+    "item": "Chocolate Cookies",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Long Life Milk",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Cereal",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Nutella",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Peanut Butter",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Jam",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Eggs",
+    "category": "Eggs/Milk"
+  },
+  {
+    "item": "Pasta",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Noddles",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Canned Tomatoes",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Sardines",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Tuna",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Olive Oil",
+    "category": "Pasta/Section"
+  },
+  {
+    "item": "Vegetable Oil",
+    "category": "Pasta/Section"
+  }
+]

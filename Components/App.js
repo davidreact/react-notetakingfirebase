@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import firebase from "../Services/firebase";
 import moment from "moment";
-// import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
-// import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-
-
+import {
+  SwipeableList,
+  SwipeableListItem,
+  ActionAnimations
+} from "@sandstreamdev/react-swipeable-list";
+import "../swipeable-style.css";
+import "@sandstreamdev/react-swipeable-list/dist/styles.css";
+import * as itemllist from "../data.json";
 const collection = "notesauth";
 
 const categories = [
@@ -13,14 +17,14 @@ const categories = [
   "Fridge",
   "Eggs/Milk",
   "Care",
-  "Cleaning"
+  "Cleaning",
+  "Pasta/Section"
 ];
 
 function useGetList({ user }) {
   const [list, setList] = useState([]);
-  const [sortedList, setSortedList] = useState([]);
   useEffect(() => {
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection(collection)
       .where("uid", "==", user.uid)
@@ -29,16 +33,18 @@ function useGetList({ user }) {
           fid: doc.id,
           ...doc.data()
         }));
-        sortList(list,localStorage.getItem("orderAsc"))
-        setList(list)
-      })
+
+        setList(list);
+      });
+
+    return () => unsubscribe();
   }, []);
 
   return list;
 }
 
 const SelectOptions = ({ cat = [], type, cl, butClick }) => {
-  if (type == "options") {
+  if (type === "options") {
     return cat.length > 0
       ? cat.map((cat, index) => (
           <option key={index} value={cat} className={cl}>
@@ -49,9 +55,7 @@ const SelectOptions = ({ cat = [], type, cl, butClick }) => {
       : "";
   }
 
-  if (type == "button") {
-    const listButtons = [1];
-
+  if (type === "button") {
     return cat.length > 0
       ? cat.map((cat, index) => (
           <button
@@ -76,6 +80,7 @@ const RenderNotes = ({ note, index }) => {
   const [tempBody, setTempBody] = useState("");
   const [tempCategory, setTempCategory] = useState("");
   const [sectionHidden, setSectionHidden] = useState(true);
+  const [isDone, setIsDone] = useState(false);
 
   const inputRef = useRef();
 
@@ -115,9 +120,9 @@ const RenderNotes = ({ note, index }) => {
     }
   };
 
-  return (
-    <div index={index} className="note">
-      <div className="noteline1">
+  const itemList = (
+    <div>
+      <div className="noteline">
         <div className="field is-grouped inputwide">
           <div className="control is-expanded">
             <input
@@ -126,7 +131,7 @@ const RenderNotes = ({ note, index }) => {
               {...readonly}
               className={`input ${readonly.readOnly ? "" : "is-primary"}`}
               onChange={e => setTempTitle(e.target.value)}
-              onClick={() => setSectionHidden(!sectionHidden)}
+              onDoubleClick={() => setSectionHidden(!sectionHidden)}
               ref={inputRef}
             />
 
@@ -150,7 +155,7 @@ const RenderNotes = ({ note, index }) => {
               value={!readonly.readOnly ? tempCategory : category}
               onChange={e => setTempCategory(e.target.value)}
             >
-              <option></option>
+              <option />
               <SelectOptions cat={categories} type="options" />
             </select>
           </div>
@@ -204,83 +209,95 @@ const RenderNotes = ({ note, index }) => {
       </div>
     </div>
   );
-};
-const sortList = (li, sortingOrder) => {
-  switch (sortingOrder) {
-    case "Ascending":
-      {console.log("Ascending Called")}
-      return li.sort(function(a, b) {
-        var x = a.title.toLowerCase();
-        var y = b.title.toLowerCase();
-        if (x > y) {
-          return -1;
-        }
-        if (x < y) {
-          return 1;
-        }
-        return 0;
-      });
-    case "Descending":
-    {console.log("Descending Called")}
-      return li.sort(function(a, b) {
-        var x = a.title.toLowerCase();
-        var y = b.title.toLowerCase();
-        if (x < y) {
-          return -1;
-        }
-        if (x > y) {
-          return 1;
-        }
-        return 0;
-      });
-    default:
-      return li;
-  }
+
+  return (
+    <div index={index} className="note">
+      <SwipeableList threshold={0.15}>
+        <SwipeableListItem
+          swipeLeft={{
+            content: (
+              <div
+                style={{
+                  width: "100%",
+                  borderRadius: "5px",
+                  padding: "9px",
+                  marginTop: "10px",
+                  backgroundColor: "green",
+                  textAlign: "right",
+                  boxSizing: "border-box"
+                }}
+              >
+                Done
+              </div>
+            ),
+            action: () => console.info("swipe action triggered")
+          }}
+          swipeRight={{
+            content: (
+              <div
+                style={{
+                  backgroundColor: "red",
+                  borderRadius: "5px",
+                  marginTop: "10px",
+                  width: "inherit",
+                  textAlign: "left",
+                  padding: "8px",
+                  boxSizing: "border-box"
+                }}
+              >
+                Delete
+              </div>
+            ),
+            animation: ActionAnimations.RETURN,
+            action: () => {
+              handlerDeleteNote(note.fid);
+              console.log("delete Triggered");
+            }
+          }}
+          onSwipeProgress={progress => {
+            console.info(`Swipe progress: ${progress}%`);
+            // setOpacity((progress / 100) * 4);
+          }}
+        >
+          <div>{itemList}</div>
+        </SwipeableListItem>
+      </SwipeableList>
+    </div>
+  );
 };
 
 const NoteList = ({ user }) => {
   const list = useGetList({ user });
   const [filteredList, setFilteredList] = useState([]);
-  const [orderAsc, setOrderAsc] = useState(localStorage.getItem("orderAsc"));
 
- useEffect(()=> {
-   setFilteredList(list)
- },[list])
+  useEffect(() => {
+    const ordered = list.sort((a, b) => {
+      const aa = a.title.toLowerCase();
+      const bb = b.title.toLowerCase();
+      if (aa > bb) return -1;
+      if (aa < bb) return 1;
+      return 0;
+    });
+    setFilteredList(ordered);
+  }, [list]);
 
   const filteredCategory = cat => {
     const catFilter = list.filter(doc => {
-      console.log("doc.category", doc.category, "cat", cat, "eval", doc.category == cat)
-      return doc.category == cat})
+      return doc.category === cat;
+    });
     setFilteredList(catFilter);
-    console.log("filCat clicked", cat, filteredList, "catFilter", catFilter);
   };
-
-  const updateOrder = (val) => {
-    sortList(list,val)
-    console.log("orderAsc in UpdateOrder", val)
-    if(val=="Ascending") {
-      setOrderAsc("Descending")
-      localStorage.setItem("orderAsc", "Descending");
-      }
-    if(val=="Descending") {
-      setOrderAsc("Ascending");
-      localStorage.setItem("orderAsc", "Ascending");
-      }
-  }
 
   return (
     <div>
       <div>
-        <button
-          className="button is-dark is-small "
-          onClick={() => updateOrder(orderAsc)}
-        >
-          Sort {orderAsc}
-        </button>
-        <div className="buttons has-addons is-centered is-grouped">
-          <button className="button is-small is-info"
-          onClick={() => setFilteredList(list)}
-          >All</button>
+        <div className="buttons is-centered filterbuttons">
+          <button
+            className="button is-small is-info"
+            onClick={() => setFilteredList(list)}
+          >
+            All
+          </button>
           <SelectOptions
             butClick={filteredCategory}
             cat={categories}
@@ -288,7 +305,7 @@ const NoteList = ({ user }) => {
             filter={filteredCategory}
             type="button"
           />
-
+          <button className="button is-small is-success">Done</button>
         </div>
       </div>
       {filteredList.map((note, index) => (
@@ -302,7 +319,9 @@ const NewNote = ({ user }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
+  const [dropActive, setDropActive] = useState(false);
   const { uid } = user;
+  const itemList = itemllist;
 
   const handlerAddNote = () => {
     if (title.length) {
@@ -323,6 +342,36 @@ const NewNote = ({ user }) => {
     }
   };
 
+  const searchAssist = itemList.default
+    .filter(a => {
+      return a.item.toLowerCase().includes(title.toLowerCase());
+    })
+    .map((e, index) => {
+      return (
+        <div
+          key={index}
+          value={e.item}
+          category={e.category}
+          className="dropdown-item"
+          onClick={() => {
+            setTitle(e.item);
+            setCategory(e.category);
+            setDropActive(false);
+          }}
+        >
+          {e.item}
+        </div>
+      );
+    });
+
+  useEffect(() => {
+    if (title && searchAssist.length > 0) {
+      setDropActive(true);
+    } else {
+      setDropActive(false);
+    }
+  }, [title]);
+
   return (
     <div className="addNote">
       <form
@@ -333,14 +382,44 @@ const NewNote = ({ user }) => {
       >
         <div className="noteline1">
           <div className="field is-grouped inputwide">
-            <div className="control is-expanded">
-              <input
-                className="input is-primary"
-                type="text"
-                placeholder="Enter new item"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-              />
+            <div className="control is-expanded has-addon">
+              <div
+                className={
+                  "dropdown inputwide " + (dropActive ? "is-active" : "")
+                }
+              >
+                <div className="dropdown-trigger inputwide">
+                  <input
+                    controls="dropdown-menu"
+                    className="input is-primary"
+                    type="text"
+                    placeholder="Enter new item"
+                    value={title}
+                    onChange={e => {
+                      setTitle(e.target.value);
+                    }}
+                  />
+                  <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div className="dropdown-content">
+                      <div className="">
+                        <div
+                          className=""
+                          onMouseLeave={() => setDropActive(false)}
+                        >
+                          <div
+                            style={{
+                              maxHeight: "300px",
+                              overflowY: "scroll"
+                            }}
+                          >
+                            {searchAssist}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="control">
               <div className="select">

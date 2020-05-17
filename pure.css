@@ -1,14 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Roboto&family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope&family=Roboto&family=Pacifico&display=swap");
 
 body {
-  background-image: linear-gradient(to right top, #845ec2, #c05cb0, #e66599, #fa7a82, #ff9671);
+  background-image: linear-gradient(
+    to right top,
+    #845ec2,
+    #c05cb0,
+    #e66599,
+    #fa7a82,
+    #ff9671
+  );
   color: white;
   min-height: 100vh;
   max-height: 100%;
+  margin: auto;
+}
+
+.dropdown-item:hover {
+  background-color: #c05cb0;
+  color: white;
 }
 
 .button {
   margin: 10px 10px 10px 0px;
+}
+
+.SwipeableListItem_content__3wbMa {
+  width: 100%;
+  display: block;
+  align-items: center;
+  background-color: transparent;
+  height: 100%;
 }
 
 .navbar1 {
@@ -16,8 +37,7 @@ body {
   margin: auto;
   padding-top: 30px;
   padding-bottom: 5px;
-  color:white;
-
+  color: white;
 }
 
 .navLogo {
@@ -25,7 +45,7 @@ body {
   font-size: 26px;
 }
 
-.noteline1 {
+.noteline {
   margin-top: 10px;
 }
 
@@ -45,13 +65,13 @@ nav {
 }
 
 .navLink:hover {
-  border-bottom: 2px solid #F9F871;
+  border-bottom: 2px solid #f9f871;
   transition: 300ms ease-in;
 }
 
 .title1 {
   text-align: center;
-  color: #F9F871;
+  color: #f9f871;
 }
 
 .appContainer {
@@ -63,5 +83,9 @@ nav {
 .pure-form {
   color: red;
   padding: 40px;
-  background-color: red
+  background-color: red;
+}
+
+.inputwide {
+  width: 100%;
 }

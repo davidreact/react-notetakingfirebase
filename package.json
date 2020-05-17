@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "note-app-firebase-integration",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
@@ -8,6 +8,7 @@
     "@fortawesome/free-brands-svg-icons": "5.13.0",
     "@fortawesome/free-solid-svg-icons": "5.13.0",
     "@fortawesome/react-fontawesome": "0.1.9",
+    "@sandstreamdev/react-swipeable-list": "0.5.0",
     "bootstrap": "4.4.1",
     "firebase": "7.14.2",
     "jquery": "3.5.0",
@@ -15,7 +16,8 @@
     "popper.js": "1.16.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "5.1.2"
+    "react-router-dom": "5.1.2",
+    "react-swipeable": "5.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,5 +27,7 @@
   },
   "devDependencies": {
     "react-scripts": "latest"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
