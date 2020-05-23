@@ -27,11 +27,14 @@ const Login = ({ user }) => {
         </div>
       )}
 
-      <form className="field is-horizontal"
-      onKeyDown={e => {
-      if(e.keyCode == 13){
-        handlerSignIn();
-      }}}>
+      <form
+        className="field is-horizontal"
+        onKeyDown={e => {
+          if (e.keyCode == 13) {
+            handlerSignIn();
+          }
+        }}
+      >
         <div className="field-body">
           <div className="field">
             <p className="control has-icons-left">

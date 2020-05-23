@@ -10,10 +10,20 @@ import {
   faCheckSquare,
   faCoffee,
   faUser,
-  faEnvelope
+  faEnvelope,
+  faPlusSquare,
+  faChevronCircleDown
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheckSquare, faCoffee, faUser, faEnvelope);
+library.add(
+  fab,
+  faCheckSquare,
+  faCoffee,
+  faUser,
+  faEnvelope,
+  faPlusSquare,
+  faChevronCircleDown
+);
 
 function Hello() {
   const [user, setUser] = useState("");
