@@ -31,7 +31,7 @@ const NoteList = ({
   categories,
   collection,
   toggleCatList,
-  showCatList = false,
+  showCatList,
   categorySelected,
   toggleCategorySelected
 }) => {
@@ -57,7 +57,8 @@ const NoteList = ({
     }
   }, [list]);
 
-  const filteredCategory = cat => {
+  const filteredCategory = (cat, toggle) => {
+    console.log("cat", cat);
     toggleCategorySelected(cat);
     switch (cat) {
       case "All":
@@ -81,39 +82,46 @@ const NoteList = ({
             .sort((a, b) => orderDesc(a, b))
         );
     }
-    toggleCatList();
+
+    if (toggle) {
+      toggleCatList(!showCatList);
+    }
   };
 
   return (
     <div>
-      <div
-        className="filterbuttons"
-        style={{ display: showCatList ? "flex" : "none" }}
-      >
-        <SelectOptions
-          butClick={filteredCategory}
-          cat={categoriesNew}
-          cl="button is-link filterbutton"
-          // cl="filterbutton"
-          filter={filteredCategory}
-          type="button"
-          catSelected={categorySelected}
-        />
-      </div>
+      <CSSTransition
+        in={showCatList}
+        // in={false}
 
-      <CSSTransition in={true} timeout={400} classNames="list">
-        <div>
-          {filteredList.map((note, index) => (
-            <RenderNotes
-              note={note}
-              index={index}
-              key={index}
-              collection={collection}
-              categories={categories}
-            />
-          ))}
+        timeout={500}
+        classNames="list"
+        unmountOnExit
+      >
+        <div
+          className="filterbuttons"
+          // style={{ display: showCatList ? "flex" : "none" }}
+        >
+          <SelectOptions
+            butClick={filteredCategory}
+            cat={categoriesNew}
+            cl="button is-info"
+            type="button"
+            catSelected={categorySelected}
+          />
         </div>
       </CSSTransition>
+      <div>
+        {filteredList.map((note, index) => (
+          <RenderNotes
+            note={note}
+            index={index}
+            key={index}
+            collection={collection}
+            categories={categories}
+          />
+        ))}
+      </div>
     </div>
   );
 };

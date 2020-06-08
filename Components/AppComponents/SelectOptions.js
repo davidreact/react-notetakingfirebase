@@ -20,7 +20,7 @@ const SelectOptions = ({ cat = [], type, cl, butClick, catSelected }) => {
             key={index}
             value={cat}
             className={cl}
-            onClick={() => butClick(cat)}
+            onClick={() => butClick(cat, true)}
           >
             {cat}
           </button>

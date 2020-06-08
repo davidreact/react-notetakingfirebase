@@ -12,7 +12,9 @@ import {
   faUser,
   faEnvelope,
   faPlusSquare,
-  faChevronCircleDown
+  faChevronCircleDown,
+  faEllipsisV,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -22,7 +24,9 @@ library.add(
   faUser,
   faEnvelope,
   faPlusSquare,
-  faChevronCircleDown
+  faChevronCircleDown,
+  faEllipsisV,
+  faBars
 );
 
 function Hello() {

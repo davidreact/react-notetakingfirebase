@@ -428,4 +428,10 @@
    * Controls fading out of unused variables.
    */
   // "editor.showUnused": true
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+  },
+  "typescript.autoClosingTags": false,
+  "html.autoClosingTags": false,
+  "javascript.autoClosingTags": false,
 }

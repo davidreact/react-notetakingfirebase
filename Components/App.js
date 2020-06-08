@@ -3,6 +3,7 @@ import NewNote from "./AppComponents/NewNote";
 import NoteList from "./AppComponents/NoteList";
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CSSTransition } from "react-transition-group";
 
 const collection = "notesauth";
 
@@ -21,10 +22,6 @@ const App = ({ user }) => {
   const [showNewNote, setShowNewNote] = useState(false);
   const [showCatList, setShowCatList] = useState(false);
   const [categorySelected, setCategorySelected] = useState("");
-
-  const showCategoryList = () => {
-    setShowCatList(!showCatList);
-  };
 
   return (
     <div className="app">
@@ -52,21 +49,31 @@ const App = ({ user }) => {
         </span>
         <span>View: {categorySelected}</span>
       </button>
-
-      {showNewNote ? (
-        <NewNote user={user} categories={categories} collection={collection} />
-      ) : (
-        ""
-      )}
+      <CSSTransition
+        in={showNewNote}
+        timeout={500}
+        classNames="list"
+        unmountOnExit
+      >
+        <div>
+          <NewNote
+            user={user}
+            categories={categories}
+            collection={collection}
+          />
+        </div>
+      </CSSTransition>
       <NoteList
         user={user}
         categories={categories}
         collection={collection}
-        toggleCatList={showCategoryList}
+        toggleCatList={setShowCatList}
         showCatList={showCatList}
         categorySelected={categorySelected}
         toggleCategorySelected={setCategorySelected}
       />
+
+      {console.log("showCatList", showCatList)}
     </div>
   );
 };

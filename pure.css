@@ -15,6 +15,11 @@ body {
   margin: auto;
 }
 
+.app {
+  max-width: 500px;
+  margin: auto;
+}
+
 .dropdown-item:hover {
   background-color: #c05cb0;
   color: white;
@@ -32,9 +37,6 @@ body {
   border-radius: 5px;
   font-family: Roboto;
   background-color: #2082e3;
-  /* background-color: transparent; */
-  /* box-shadow: 5px 5px 10px -4px rgb(224, 224, 224); */
-  /* box-shadow: none; */
   border: 0px solid #ffffff;
 }
 
@@ -57,40 +59,63 @@ body {
 }
 
 .navbar1 {
-  max-width: 500px;
+  max-width: 700px;
   margin: auto;
-  padding-top: 30px;
+  padding-top: 10px;
   padding-bottom: 5px;
   color: white;
 }
 
 .navLogo {
-  font-family: Pacifico;
-  font-size: 26px;
+  width: 150px;
+}
+
+.navMobile {
+  display: none;
+}
+
+.navMenu {
+  color: white;
+  position: relative;
+  padding: 10px;
+  display: flex;
 }
 
 .noteline {
   margin-top: 10px;
 }
 
-nav {
+.navigationBar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 10px;
+  background-color: transparent;
+  /* padding-top: 10px; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding-left: 5px; */
+  /* padding-right: 5px; */
+  /* padding-bottom: 10px; */
 }
 
+.navBrand {
+  display: flex;
+  justify-content: space-between;
+}
 .navLink {
   justify-items: baseline;
   border-bottom: 2px solid transparent;
   color: white;
+  min-width: 80px;
+  text-align: center;
+  /* background-color: red; */
+  box-sizing: border-box;
 }
 
-.navLink:hover {
+.selected {
   border-bottom: 2px solid #f9f871;
+  padding-bottom: 5px;
   transition: 300ms ease-in;
+  box-sizing: border-box;
 }
 
 .title1 {
@@ -159,14 +184,45 @@ nav {
 
 .list-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in;
+  transition: opacity 500ms ease-in;
 }
 
-.list-leave {
+.list-exit {
   opacity: 1;
 }
 
-.list-leave-active {
+.list-exit-active {
   opacity: 0;
-  transition: opacity 300ms ease-out;
+  transition: opacity 500ms ease-out;
+}
+
+@media only screen and (max-width: 600px) {
+  .navMobile {
+    display: inline-block;
+  }
+
+  .menuContainer {
+    position: absolute;
+    width: 100%;
+  }
+
+  .navMenu {
+    display: none;
+    float: right;
+    background-color: #151515;
+    z-index: 1;
+    margin-right: 5px;
+    border-radius: 5px;
+    min-width: 150px;
+  }
+
+  .navLink {
+    /* background-color: black; */
+    margin-bottom: 10px;
+    min-height: 50px;
+  }
+
+  .navigationBar {
+    display: block;
+  }
 }

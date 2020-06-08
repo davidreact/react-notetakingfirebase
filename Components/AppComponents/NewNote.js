@@ -144,7 +144,7 @@ const NewNote = ({ user, categories, collection }) => {
         </div>
       </form>
 
-      <button className="button is-link" onClick={handlerAddNote}>
+      <button className="button is-info" onClick={handlerAddNote}>
         Add Item
       </button>
     </div>
