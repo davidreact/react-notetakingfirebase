@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../Services/firebase";
-import * as itemllist from "../../data.json";
+import * as itemllist from "../../../data.json";
 import moment from "moment";
 import SelectOptions from "./SelectOptions";
 

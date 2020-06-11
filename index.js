@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import firebase from "./Services/firebase";
+import firebase from "./src/Services/firebase";
 import ReactDOM from "react-dom";
-import Navigation from "./Navigation";
+import Navigation from "./src/Navigation";
 import "./pure.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
